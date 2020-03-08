@@ -20,6 +20,7 @@ class App extends Component {
     }
   }
   render() {
+    console.log("App render")
     var _title, _desc = null;
     if (this.state.mode === 'welcome') {
       _title = this.state.welcome.title;
@@ -30,10 +31,18 @@ class App extends Component {
     }
     return (
       <div className="App" >
-        <Subject
+        {/* <Subject
           title={this.state.subject.title}
           sub={this.state.subject.sub}>
-        </Subject>
+        </Subject> */}
+        <header>
+          <h1><a href="/" onClick={function (e) {
+            console.log(e);
+            // debugger;
+            e.preventDefault();
+          }}>{this.state.subject.title}</a></h1>
+          {this.state.subject.sub}
+        </header>
         <TOC data={this.state.contents}></TOC>
         <Contents title={_title} desc={_desc}></Contents>
       </div>
