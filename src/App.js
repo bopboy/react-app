@@ -31,22 +31,15 @@ class App extends Component {
     }
     return (
       <div className="App" >
-        {/* <Subject
+        <Subject
           title={this.state.subject.title}
-          sub={this.state.subject.sub}>
-        </Subject> */}
-        <header>
-          <h1><a href="/" onClick={function (e) {
-            console.log(e);
-            // debugger;
-            e.preventDefault();
-            // this.state.mode = "welcome"
+          sub={this.state.subject.sub}
+          onChangePage={function () {
             this.setState({
               mode: "welcome"
             })
-          }.bind(this)}>{this.state.subject.title}</a></h1>
-          {this.state.subject.sub}
-        </header>
+          }.bind(this)}>
+        </Subject>
         <TOC data={this.state.contents}></TOC>
         <Contents title={_title} desc={_desc}></Contents>
       </div>
