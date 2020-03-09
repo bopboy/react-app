@@ -40,7 +40,11 @@ class App extends Component {
             console.log(e);
             // debugger;
             e.preventDefault();
-          }}>{this.state.subject.title}</a></h1>
+            // this.state.mode = "welcome"
+            this.setState({
+              mode: "welcome"
+            })
+          }.bind(this)}>{this.state.subject.title}</a></h1>
           {this.state.subject.sub}
         </header>
         <TOC data={this.state.contents}></TOC>
