@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TOC from './components/TOC'
 import Contents from './components/Contents'
 import Subject from './components/Subject'
+import Control from './components/Control'
 import './App.css'
 
 
@@ -58,6 +59,11 @@ class App extends Component {
           }.bind(this)}
           data={this.state.contents}
         ></TOC>
+        <Control onChangeMode={function (mode) {
+          this.setState({
+            mode: mode
+          })
+        }.bind(this)}></Control>
         <Contents title={_title} desc={_desc}></Contents>
       </div>
     );
