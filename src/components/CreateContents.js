@@ -13,7 +13,6 @@ class CreateContents extends Component {
                             e.target.title.value,
                             e.target.desc.value
                         )
-                        alert("hi")
                     }.bind(this)}
                 >
                     <p><input type="text" name="title" placeholder="title"></input></p>
