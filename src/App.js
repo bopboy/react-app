@@ -54,25 +54,32 @@ class App extends Component {
           desc: _desc
         });
         this.setState({
-          contents: newContents
+          contents: newContents,
+          mode: 'read',
+          selected_content_id: this.max_content_id
         })
         console.log(_title, _desc);
       }.bind(this)}></CreateContents>
     } else if (this.state.mode === 'update') {
       _content = this.getReadContent();
-      _article = <UpdateContents data={_content} onSubmit={function (_title, _desc) {
-        this.max_content_id = this.max_content_id + 1;
-        var newContents = Array.from(this.state.contents);
-        newContents.push({
-          id: this.max_content_id,
-          title: _title,
-          desc: _desc
-        });
-        this.setState({
-          contents: newContents
-        })
-        console.log(_title, _desc);
-      }.bind(this)}></UpdateContents>
+      _article = <UpdateContents data={_content} onSubmit={
+        function (_id, _title, _desc) {
+          var _contents = Array.from(this.state.contents);
+          var i = 0;
+          while (i < _contents.length) {
+            if (_contents[i].id === _id) {
+              _contents[i] = { id: _id, title: _title, desc: _desc };
+              console.log("test", _contents[i]);
+
+              break;
+            }
+            i = i + 1;
+          }
+          this.setState({
+            contents: _contents,
+            mode: 'read'
+          });
+        }.bind(this)}></UpdateContents>
     }
     return _article;
   }

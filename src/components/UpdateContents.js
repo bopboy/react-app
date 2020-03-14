@@ -3,6 +3,7 @@ class UpdateContents extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.data.id,
             title: this.props.data.title,
             desc: this.props.data.desc
         }
@@ -18,16 +19,18 @@ class UpdateContents extends Component {
         return (
             <article>
                 <h2>Update</h2>
-                <form action="/create_procss" method="post"
+                <form action="/update_process" method="post"
                     onSubmit={function (e) {
                         e.preventDefault();
                         // debugger;
                         this.props.onSubmit(
-                            e.target.title.value,
-                            e.target.desc.value
+                            this.state.id,
+                            this.state.title,
+                            this.state.desc
                         )
                     }.bind(this)}
                 >
+                    <input type="hidden" name="id" value={this.state.id}></input>
                     <p><input
                         type="text"
                         name="title"
@@ -36,10 +39,10 @@ class UpdateContents extends Component {
                         onChange={this.inputFormHandler}
                     ></input></p>
                     <p><textarea
+                        onChange={this.inputFormHandler}
                         name="desc"
                         placeholder="description"
                         value={this.state.desc}
-                        onChange={this.inputFormHandler}
                     ></textarea></p>
                     <p><input type="submit"></input></p>
                 </form>
